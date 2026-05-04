@@ -4,790 +4,133 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nirbhay Bhojani — RF & IC Design Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
 <style>
-  :root {
-    --c-bg: #0a0d0f;
-    --c-surface: #101418;
-    --c-card: #141920;
-    --c-border: #1e2830;
-    --c-border-bright: #2a3a48;
-    --c-accent: #00e5c8;
-    --c-accent2: #0090ff;
-    --c-text: #c8d8e8;
-    --c-muted: #5a7080;
-    --c-heading: #e8f4ff;
-    --c-tag: #0f2030;
-    --c-tag-border: #1a3550;
-    --c-nav-bg: rgba(10,13,15,0.96);
-    --c-skill-bg: #0a1520;
-    --font-mono: 'Share Tech Mono', monospace;
-    --font-body: 'DM Sans', sans-serif;
-  }
-  html.light {
-    --c-bg: #f0f2f5; --c-surface: #e4e8ed; --c-card: #ffffff;
-    --c-border: #b8c4d0; --c-border-bright: #8090a0;
-    --c-accent: #007a65; --c-accent2: #005db3;
-    --c-text: #111a24; --c-muted: #3a4f62; --c-heading: #060d14;
-    --c-tag: #dce8f4; --c-tag-border: #9ab4cc;
-    --c-nav-bg: rgba(240,242,245,0.97); --c-skill-bg: #e4eef8;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--c-bg); color: var(--c-text); font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
+:root {
+  --c-bg: #0a0d0f;
+  --c-card: #141920;
+  --c-border: #1e2830;
+  --c-accent: #00e5c8;
+  --c-text: #c8d8e8;
+  --c-heading: #e8f4ff;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-body: 'DM Sans', sans-serif;
+}
 
-  /* NAV */
-  .nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 4vw; border-bottom: 1px solid var(--c-border); position: sticky; top: 0; background: var(--c-nav-bg); backdrop-filter: blur(6px); z-index: 100; }
-  .nav-logo { font-family: var(--font-mono); font-size: 14px; color: var(--c-accent); letter-spacing: 0.05em; }
-  .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .nav-links a { font-size: 12px; color: var(--c-muted); text-decoration: none; font-family: var(--font-mono); letter-spacing: 0.03em; transition: color 0.2s; position: relative; }
-  .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--c-accent); transition: width 0.3s; }
-  .nav-links a:hover { color: var(--c-accent); }
-  .nav-links a:hover::after { width: 100%; }
-  .theme-toggle { background: transparent; border: 1px solid var(--c-border-bright); color: var(--c-text); font-family: var(--font-mono); font-size: 11px; padding: 5px 12px; cursor: pointer; transition: border-color 0.2s, color 0.2s; display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-  .theme-toggle:hover { border-color: var(--c-accent); color: var(--c-accent); }
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  margin: 0;
+}
 
-  /* HERO */
-  .hero { padding: 4rem 4vw 3rem; border-bottom: 1px solid var(--c-border); position: relative; overflow: hidden; }
-  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--c-border) 1px, transparent 1px), linear-gradient(90deg, var(--c-border) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.4; pointer-events: none; }
-  .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
-  .hero-label { font-family: var(--font-mono); font-size: 11px; color: var(--c-accent); letter-spacing: 0.15em; margin-bottom: 0.75rem; animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
-  .hero-name { font-family: var(--font-mono); font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--c-heading); letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.5rem; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.18s both; }
-  .hero-name span { color: var(--c-accent); }
-  .hero-role { font-size: 13px; color: var(--c-muted); font-family: var(--font-mono); margin-bottom: 1.25rem; animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.32s both; }
-  .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.44s both; margin-bottom: 1.5rem; }
-  .badge { font-family: var(--font-mono); font-size: 11px; padding: 4px 10px; border: 1px solid var(--c-tag-border); background: var(--c-tag); color: var(--c-accent); letter-spacing: 0.08em; transition: transform 0.2s, border-color 0.2s; }
-  .badge:hover { transform: scale(1.05); border-color: var(--c-accent); }
-  .hero-right { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; animation: slideInRight 1.1s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
-  .hero-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid var(--c-accent); filter: grayscale(20%); display: block; }
-  .hero-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 220px; }
-  .hero-stat-card { background: var(--c-card); border: 1px solid var(--c-border); border-top: 3px solid var(--c-accent); padding: 0.75rem 1rem; transition: transform 0.3s, border-color 0.2s; }
-  .hero-stat-card:hover { transform: translateY(-3px); border-color: var(--c-accent); }
-  .hero-stat-val { font-family: var(--font-mono); font-size: 1.4rem; color: var(--c-accent); line-height: 1; margin-bottom: 3px; }
-  .hero-stat-lbl { font-family: var(--font-mono); font-size: 9px; color: var(--c-muted); letter-spacing: 0.1em; }
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 4vw;
+  border-bottom: 1px solid var(--c-border);
+}
 
-  /* SECTIONS */
-  section { padding: 2.5rem 4vw; border-bottom: 1px solid var(--c-border); }
-  .sec-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.75rem; }
-  .sec-num { font-family: var(--font-mono); font-size: 11px; color: var(--c-accent); letter-spacing: 0.1em; }
-  .sec-title { font-family: var(--font-mono); font-size: 15px; color: var(--c-heading); letter-spacing: 0.05em; }
-  .sec-line { flex: 1; height: 1px; background: var(--c-border); transform-origin: left; transform: scaleX(0); transition: transform 1s cubic-bezier(0.22,1,0.36,1) 0.25s; }
-  .sec-header.visible .sec-line { transform: scaleX(1); }
+/* HERO */
+.hero {
+  padding: 4rem 4vw;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+}
 
-  /* CONTENTS */
-  .contents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
-  .toc-item { background: var(--c-card); border: 1px solid var(--c-border); border-left: 3px solid var(--c-accent2); padding: 0.75rem 1rem; text-decoration: none; color: var(--c-text); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; transition: border-color 0.2s, color 0.2s, transform 0.3s; display: flex; align-items: center; gap: 8px; }
-  .toc-item:hover { border-color: var(--c-accent); color: var(--c-accent); transform: translateX(4px); }
-  .toc-num { font-size: 10px; color: var(--c-accent); }
+.hero-name {
+  font-family: var(--font-mono);
+  font-size: 3rem;
+  color: var(--c-heading);
+}
 
-  /* PERSONAL STATEMENT */
-  .statement-box { background: var(--c-card); border: 1px solid var(--c-border); border-left: 4px solid var(--c-accent); padding: 1.5rem; }
-  .statement-text { font-size: 15px; color: var(--c-text); line-height: 1.9; }
-  .statement-goal { margin-top: 1rem; font-family: var(--font-mono); font-size: 12px; color: var(--c-accent); padding: 8px 12px; background: rgba(0,229,200,0.05); border: 1px solid rgba(0,229,200,0.2); display: inline-block; }
+.hero-role {
+  font-family: var(--font-mono);
+  color: var(--c-accent);
+  margin-top: 0.5rem;
+}
 
-  /* RESUME / ABOUT */
-  .resume-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 2.5rem; }
-  .about-text { font-size: 15px; color: var(--c-text); line-height: 1.9; }
-  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 14px; background: var(--c-card); border: 1px solid var(--c-border); border-left: 3px solid var(--c-accent); gap: 12px; margin-bottom: 8px; }
-  .stat-label { font-family: var(--font-mono); font-size: 11px; color: var(--c-muted); letter-spacing: 0.08em; white-space: nowrap; }
-  .stat-value { font-family: var(--font-mono); font-size: 12px; color: var(--c-accent); text-align: right; }
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
 
-  /* SKILLS HARD */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-  .skill-group { background: var(--c-card); border: 1px solid var(--c-border); padding: 1.25rem; transition: transform 0.4s, border-color 0.3s, box-shadow 0.4s; }
-  .skill-group:hover { transform: translateY(-4px); border-color: var(--c-border-bright); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
-  .skill-group-title { font-family: var(--font-mono); font-size: 11px; color: var(--c-accent); letter-spacing: 0.1em; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--c-border); }
-  .skill-items { display: flex; flex-wrap: wrap; gap: 6px; }
-  .skill-item { font-family: var(--font-mono); font-size: 11px; padding: 3px 9px; border: 1px solid var(--c-tag-border); background: var(--c-skill-bg); color: var(--c-text); }
+/* PHOTO STYLE */
+.hero-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--c-accent);
+}
 
-  /* EXPERIENCE */
-  .exp-item { background: var(--c-card); border: 1px solid var(--c-border); border-left: 3px solid var(--c-accent); padding: 1.25rem; margin-bottom: 1rem; transition: transform 0.4s, border-color 0.3s, box-shadow 0.4s; }
-  .exp-item:hover { transform: translateY(-4px); border-color: var(--c-border-bright); box-shadow: 0 12px 32px rgba(0,0,0,0.16); }
-  .exp-item:last-child { margin-bottom: 0; }
-  .exp-meta { font-family: var(--font-mono); font-size: 10px; color: var(--c-accent); letter-spacing: 0.12em; margin-bottom: 6px; }
-  .exp-title { font-size: 14px; font-weight: 500; color: var(--c-heading); margin-bottom: 8px; }
-  .exp-bullets { padding-left: 1rem; }
-  .exp-bullets li { font-size: 13px; color: var(--c-muted); line-height: 1.7; margin-bottom: 4px; }
+/* STATS */
+.hero-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
 
-  /* PROJECTS */
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
-  .proj-card { background: var(--c-card); border: 1px solid var(--c-border); padding: 1.25rem; transition: transform 0.4s, border-color 0.3s, box-shadow 0.4s; }
-  .proj-card:hover { transform: translateY(-5px); border-color: var(--c-border-bright); box-shadow: 0 16px 40px rgba(0,0,0,0.16); }
-  .proj-freq { font-family: var(--font-mono); font-size: 10px; color: var(--c-accent2); letter-spacing: 0.1em; margin-bottom: 8px; }
-  .proj-title { font-size: 14px; font-weight: 500; color: var(--c-heading); margin-bottom: 8px; line-height: 1.4; }
-  .proj-desc { font-size: 13px; color: var(--c-muted); line-height: 1.7; margin-bottom: 12px; }
-  .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .proj-tag { font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border: 1px solid var(--c-tag-border); background: var(--c-tag); color: var(--c-muted); letter-spacing: 0.06em; }
-  .proj-link { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--c-accent2); text-decoration: none; border-bottom: 1px solid rgba(0,144,255,0.3); padding-bottom: 1px; transition: border-color 0.2s; }
-  .proj-link:hover { border-color: var(--c-accent2); }
+.hero-stat-card {
+  background: var(--c-card);
+  padding: 10px;
+  border-top: 3px solid var(--c-accent);
+}
 
-  /* RESEARCH */
-  .research-list { display: flex; flex-direction: column; gap: 1rem; }
-  .research-item { padding: 1.25rem; background: var(--c-card); border: 1px solid var(--c-border); border-left: 3px solid var(--c-accent2); transition: transform 0.4s, border-color 0.3s, box-shadow 0.4s; }
-  .research-item:hover { transform: translateY(-4px); border-color: var(--c-border-bright); box-shadow: 0 12px 32px rgba(0,0,0,0.16); }
-  .research-item.collab { border-left-color: #8040ff; }
-  .research-item.active { border-left-color: var(--c-accent); }
-  .research-type { font-family: var(--font-mono); font-size: 10px; color: var(--c-accent2); letter-spacing: 0.12em; margin-bottom: 6px; }
-  .research-item.collab .research-type { color: #8040ff; }
-  .research-item.active .research-type { color: var(--c-accent); }
-  .research-title { font-size: 14px; font-weight: 500; color: var(--c-heading); margin-bottom: 6px; line-height: 1.4; }
-  .research-desc { font-size: 13px; color: var(--c-muted); line-height: 1.7; }
-  .research-metrics { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .metric-pill { font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; background: rgba(0,144,255,0.08); border: 1px solid rgba(0,144,255,0.25); color: #60a8ff; }
-  .research-item.active .metric-pill { background: rgba(0,229,200,0.08); border-color: rgba(0,229,200,0.25); color: var(--c-accent); }
-  .research-badge { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; background: rgba(255,180,0,0.08); border: 1px solid rgba(255,180,0,0.3); color: #e0a020; }
-  .research-badge.inprogress { background: rgba(128,64,255,0.08); border-color: rgba(128,64,255,0.3); color: #a060ff; }
+.hero-stat-val {
+  font-family: var(--font-mono);
+  color: var(--c-accent);
+}
 
-  /* CERTIFICATIONS */
-  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-  .cert-card { background: var(--c-card); border: 1px solid var(--c-border); padding: 1.25rem; border-top: 3px solid var(--c-accent); transition: transform 0.4s, border-color 0.3s, box-shadow 0.4s; }
-  .cert-card:hover { transform: translateY(-4px); border-color: var(--c-border-bright); box-shadow: 0 12px 32px rgba(0,0,0,0.16); }
-  .cert-issuer { font-family: var(--font-mono); font-size: 10px; color: var(--c-accent); letter-spacing: 0.12em; margin-bottom: 8px; }
-  .cert-title { font-size: 14px; font-weight: 500; color: var(--c-heading); margin-bottom: 6px; line-height: 1.4; }
-  .cert-desc { font-size: 12px; color: var(--c-muted); line-height: 1.6; }
-  .cert-score { display: inline-block; margin-top: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--c-accent); }
-
-  /* AWARDS */
-  .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-  .award-card { background: var(--c-card); border: 1px solid var(--c-border); border-left: 3px solid #e0a020; padding: 1.25rem; transition: transform 0.4s, border-color 0.3s; }
-  .award-card:hover { transform: translateY(-4px); border-color: var(--c-border-bright); }
-  .award-icon { font-family: var(--font-mono); font-size: 11px; color: #e0a020; letter-spacing: 0.1em; margin-bottom: 6px; }
-  .award-title { font-size: 14px; font-weight: 500; color: var(--c-heading); margin-bottom: 4px; }
-  .award-desc { font-size: 12px; color: var(--c-muted); line-height: 1.6; }
-
-  /* RECOMMENDATIONS */
-  .rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
-  .rec-card { background: var(--c-card); border: 1px solid var(--c-border); padding: 1.5rem; position: relative; transition: transform 0.4s, border-color 0.3s; }
-  .rec-card:hover { transform: translateY(-4px); border-color: var(--c-border-bright); }
-  .rec-card::before { content: '"'; font-family: var(--font-mono); font-size: 3rem; color: var(--c-accent); opacity: 0.2; position: absolute; top: 0.5rem; left: 1rem; line-height: 1; }
-  .rec-text { font-size: 13px; color: var(--c-text); line-height: 1.8; font-style: italic; margin-bottom: 1rem; padding-top: 1rem; }
-  .rec-person { display: flex; align-items: center; gap: 12px; padding-top: 1rem; border-top: 1px solid var(--c-border); }
-  .rec-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--c-tag); border: 2px solid var(--c-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 14px; color: var(--c-accent); flex-shrink: 0; }
-  .rec-name { font-family: var(--font-mono); font-size: 12px; color: var(--c-heading); }
-  .rec-role { font-family: var(--font-mono); font-size: 10px; color: var(--c-muted); margin-top: 2px; }
-
-  /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-  .contact-links { display: flex; flex-direction: column; gap: 10px; }
-  .contact-link { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--c-card); border: 1px solid var(--c-border); color: var(--c-text); text-decoration: none; font-size: 13px; transition: border-color 0.3s, color 0.3s, transform 0.4s; }
-  .contact-link:hover { border-color: var(--c-accent); color: var(--c-accent); transform: translateX(4px); }
-  .contact-icon { font-family: var(--font-mono); font-size: 11px; color: var(--c-accent); min-width: 44px; }
-  .form-group { margin-bottom: 1rem; }
-  .form-label { font-family: var(--font-mono); font-size: 11px; color: var(--c-muted); letter-spacing: 0.08em; display: block; margin-bottom: 6px; }
-  .form-input, .form-textarea { width: 100%; background: var(--c-card); border: 1px solid var(--c-border); color: var(--c-text); padding: 8px 12px; font-size: 13px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; }
-  .form-input:focus, .form-textarea:focus { border-color: var(--c-accent); }
-  .form-textarea { resize: vertical; min-height: 100px; }
-  .form-btn { background: transparent; border: 1px solid var(--c-accent); color: var(--c-accent); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; padding: 9px 20px; cursor: pointer; transition: background 0.2s; }
-  .form-btn:hover { background: rgba(0,229,200,0.08); }
-
-  .footer { padding: 1.5rem 4vw; font-family: var(--font-mono); font-size: 11px; color: var(--c-muted); letter-spacing: 0.06em; text-align: center; border-top: 1px solid var(--c-border); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes slideInRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
-  .sr { opacity:0; transform:translateY(18px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
-  .sr.visible { opacity:1; transform:translateY(0); }
-  .sr.d1{transition-delay:0.00s}.sr.d2{transition-delay:0.07s}.sr.d3{transition-delay:0.14s}.sr.d4{transition-delay:0.21s}.sr.d5{transition-delay:0.28s}.sr.d6{transition-delay:0.35s}
-
-  /* Smooth theme */
-  body,.nav,section,.hero,.proj-card,.cert-card,.award-card,.rec-card,.exp-item,.research-item,.skill-group,.stat-row,.hero-stat-card,.contact-link,.form-input,.form-textarea { transition: background-color 0.5s ease, border-color 0.5s ease, color 0.4s ease; }
-
-  /* RESPONSIVE */
-  @media(max-width:900px){ .hero-inner{grid-template-columns:1fr;} .hero-right{display:none;} .resume-grid{grid-template-columns:1fr;} }
-  @media(max-width:600px){ .contact-grid{grid-template-columns:1fr;} .nav-links{display:none;} section{padding:2rem 5vw;} .hero{padding:3rem 5vw 2.5rem;} .nav{padding:1rem 5vw;} }
 </style>
 </head>
+
 <body>
-<div class="port-root">
 
-  <nav class="nav">
-    <div class="nav-logo">NIRBHAY BHOJANI</div>
-    <div class="nav-links">
-      <a href="#contents">contents</a>
-      <a href="#statement">statement</a>
-      <a href="#resume">resume</a>
-      <a href="#skills">skills</a>
-      <a href="#experience">experience</a>
-      <a href="#projects">projects</a>
-      <a href="#research">research</a>
-      <a href="#certifications">certifications</a>
-      <a href="#awards">awards</a>
-      <a href="#recommendations">recommendations</a>
-      <a href="#contact">contact</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-      <span id="themeIcon">&#9728;</span>
-      <span id="themeLabel">LIGHT</span>
-    </button>
-  </nav>
+<!-- NAV -->
+<div class="nav">
+  <div>NIRBHAY BHOJANI</div>
+</div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-grid-bg"></div>
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-label">// DIGITAL PORTFOLIO · ECE · PDEU · IEEE SPS VICE CHAIR · ISRO INTERN</div>
-        <div class="hero-name">Nirbhay<br><span>Bhojani</span></div>
-        <div class="hero-role">RF Systems · RFIC Design · Antenna Engineering · Metasurfaces · mmWave</div>
-        <div class="hero-badges">
-          <span class="badge">CGPA 9.84</span>
-          <span class="badge">RANK 1 ECE</span>
-          <span class="badge">ISRO SAC INTERN</span>
-          <span class="badge">28 GHz ME DIPOLE</span>
-          <span class="badge">METASURFACES</span>
-          <span class="badge">HFSS · CST · ADS</span>
-          <span class="badge">IEEE SPS VICE CHAIR</span>
-          <span class="badge">PATENT PUBLISHED</span>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:1.25rem;">
-          <img class="hero-photo" src="data:image/jpeg;base64,/9j/4RNkRXhpZgAASUkqAAgAAAAQAAABAwABAAAAQA4AAAEBAwABAAAAgAkAAAIBAwADAAAAzgAAAAYBAwABAAAAAgAAAA8BAgAGAAAA1AAAABABAgAOAAAA2gAAABIBAwABAAAAAQAAABUBAwABAAAAAwAAABoBBQABAAAA6AAAABsBBQABAAAA8AAAACgBAwABAAAAAgAAADEBAgAfAAAA+AAAADIBAgAUAAAAFwEAABMCAwABAAAAAgAAAGmHBAABAAAALAEAACWIBAABAAAA7AQAAAAFAAAIAAgACABDYW5vbgBDYW5vbiBFT1MgNzBEAMDGLQAQJwAAwMYtABAnAABBZG9iZSBQaG90b3Nob3AgMjYuNCAoV2luZG93cykAMjAyNTowNToxMCAxMzoyMjoxNAAA" alt="Nirbhay Bhojani" onerror="this.style.display='none'" />
-          <div class="hero-stat-grid">
-            <div class="hero-stat-card"><div class="hero-stat-val">9.84</div><div class="hero-stat-lbl">CGPA / 10</div></div>
-            <div class="hero-stat-card"><div class="hero-stat-val">#1</div><div class="hero-stat-lbl">ECE RANK</div></div>
-            <div class="hero-stat-card"><div class="hero-stat-val">2</div><div class="hero-stat-lbl">PAPERS</div></div>
-            <div class="hero-stat-card"><div class="hero-stat-val">10W</div><div class="hero-stat-lbl">ISRO INTERN</div></div>
-            <div class="hero-stat-card"><div class="hero-stat-val">2</div><div class="hero-stat-lbl">JOURNALS</div></div>
-            <div class="hero-stat-card"><div class="hero-stat-val">1</div><div class="hero-stat-lbl">PATENT</div></div>
-          </div>
-        </div>
-      </div>
+<!-- HERO -->
+<div class="hero">
+
+  <!-- LEFT -->
+  <div>
+    <div class="hero-name">Nirbhay <span style="color:#00e5c8;">Bhojani</span></div>
+    <div class="hero-role">
+      RF Systems · RFIC · Antenna · Metasurfaces
     </div>
   </div>
 
-  <!-- 01 CONTENTS -->
-  <section id="contents">
-    <div class="sec-header sr">
-      <span class="sec-num">01</span>
-      <span class="sec-title">CONTENTS</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="contents-grid">
-      <a class="toc-item sr d1" href="#statement"><span class="toc-num">02</span> Personal Statement</a>
-      <a class="toc-item sr d2" href="#resume"><span class="toc-num">03</span> Resume / About</a>
-      <a class="toc-item sr d3" href="#skills"><span class="toc-num">04</span> Hard Skills</a>
-      <a class="toc-item sr d4" href="#experience"><span class="toc-num">05</span> Experience</a>
-      <a class="toc-item sr d5" href="#projects"><span class="toc-num">06</span> Work Samples</a>
-      <a class="toc-item sr d6" href="#research"><span class="toc-num">07</span> Research</a>
-      <a class="toc-item sr d1" href="#certifications"><span class="toc-num">08</span> Certifications</a>
-      <a class="toc-item sr d2" href="#awards"><span class="toc-num">09</span> Awards</a>
-      <a class="toc-item sr d3" href="#recommendations"><span class="toc-num">10</span> Recommendations</a>
-      <a class="toc-item sr d4" href="#contact"><span class="toc-num">11</span> Contact</a>
-    </div>
-  </section>
+  <!-- RIGHT -->
+  <div class="hero-right">
 
-  <!-- 02 PERSONAL STATEMENT -->
-  <section id="statement">
-    <div class="sec-header sr">
-      <span class="sec-num">02</span>
-      <span class="sec-title">PERSONAL STATEMENT</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="statement-box sr d1">
-      <div class="statement-text">
-        I am an Electronics and Communication Engineering student at Pandit Deendayal Energy University (PDEU), Gandhinagar, holding a CGPA of 9.84 and department Rank 1. My passion lies at the intersection of electromagnetic theory and practical system design — specifically in millimeter-wave antenna engineering, metasurface-based polarization control, and RF integrated circuit design.
-        <br><br>
-        My technical journey has taken me from designing circularly polarized antennas at ISRO's Space Application Center to collaborating with IIT BHU on reconfigurable metasurfaces, and from designing a 28 GHz ME dipole antenna for satellite communications to leading a student satellite communication subsystem. I approach every project with rigor, seeking not just functional designs but ones that push the boundaries of bandwidth, axial ratio, and integration.
-        <br><br>
-        Beyond the lab, I serve as Vice Chair of the IEEE Signal Processing Society Student Branch Chapter at PDEU, where I work to build a culture of research and technical excellence. I have published a patent, submitted journal papers to IEEE TAP, and am actively expanding my work into RFIC design. My goal is to pursue a graduate degree (MS) specializing in RFIC or RF System Design at a research-focused institution, where I can contribute meaningfully to the future of wireless and satellite communication systems.
-      </div>
-      <div class="statement-goal">GOAL: MS in RFIC / RF System Design — targeting research-focused graduate programs</div>
-    </div>
-  </section>
+    <!-- ✅ YOUR PHOTO GOES HERE -->
+    <img class="hero-photo"
+         src="PASTE_YOUR_BASE64_IMAGE_HERE" />
 
-  <!-- 03 RESUME -->
-  <section id="resume">
-    <div class="sec-header sr">
-      <span class="sec-num">03</span>
-      <span class="sec-title">RESUME</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="resume-grid">
-      <div class="about-text sr d1">
-        <strong style="color:var(--c-heading);font-family:var(--font-mono);font-size:12px;letter-spacing:0.05em;">EDUCATION</strong><br><br>
-        B.Tech in Electronics and Communication Engineering<br>
-        Pandit Deendayal Energy University (PDEU), Gandhinagar, Gujarat<br>
-        CGPA: 9.84 / 10 &nbsp;|&nbsp; Department Rank: 1<br><br>
-        <strong style="color:var(--c-heading);font-family:var(--font-mono);font-size:12px;letter-spacing:0.05em;">AFFILIATIONS</strong><br><br>
-        Vice Chair — IEEE Signal Processing Society Student Branch Chapter, PDEU<br>
-        Student Member — IEEE<br>
-        Collaborating Researcher — IIT BHU × PDEU Metasurface Project<br><br>
-        <strong style="color:var(--c-heading);font-family:var(--font-mono);font-size:12px;letter-spacing:0.05em;">TOOLS</strong><br><br>
-        Ansys HFSS · CST Studio Suite · ADS · Cadence EDA · Sentaurus · Python · Verilog · MATLAB
+    <!-- STATS -->
+    <div class="hero-stat-grid">
+      <div class="hero-stat-card">
+        <div class="hero-stat-val">9.84</div>
+        <div>CGPA</div>
       </div>
-      <div class="sr d3">
-        <div class="stat-row"><span class="stat-label">INSTITUTION</span><span class="stat-value">PDEU, Gandhinagar</span></div>
-        <div class="stat-row"><span class="stat-label">CGPA</span><span class="stat-value">9.84 / 10</span></div>
-        <div class="stat-row"><span class="stat-label">RANK</span><span class="stat-value">1 of ECE Dept</span></div>
-        <div class="stat-row"><span class="stat-label">INTERNSHIP</span><span class="stat-value">ISRO SAC (10 Weeks)</span></div>
-        <div class="stat-row"><span class="stat-label">IEEE ROLE</span><span class="stat-value">Vice Chair, SPS PDEU</span></div>
-        <div class="stat-row"><span class="stat-label">PAPERS</span><span class="stat-value">2 Journal + 2 Conference</span></div>
-        <div class="stat-row"><span class="stat-label">PATENT</span><span class="stat-value">1 Published</span></div>
-        <div class="stat-row"><span class="stat-label">GOAL</span><span class="stat-value">MS in RFIC / RF System Design</span></div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-val">Rank 1</div>
+        <div>ECE</div>
       </div>
     </div>
-  </section>
 
-  <!-- 04 SKILLS -->
-  <section id="skills">
-    <div class="sec-header sr">
-      <span class="sec-num">04</span>
-      <span class="sec-title">HARD SKILLS &amp; EXPERTISE</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-group sr d1">
-        <div class="skill-group-title">RF &amp; ANTENNA DESIGN</div>
-        <div class="skill-items">
-          <span class="skill-item">Ansys HFSS</span>
-          <span class="skill-item">CST Studio</span>
-          <span class="skill-item">ME Dipole</span>
-          <span class="skill-item">CP Antennas</span>
-          <span class="skill-item">Metasurfaces</span>
-          <span class="skill-item">mmWave 28 GHz</span>
-          <span class="skill-item">Array Design</span>
-          <span class="skill-item">SATCOM Antennas</span>
-          <span class="skill-item">Patch Antennas</span>
-        </div>
-      </div>
-      <div class="skill-group sr d2">
-        <div class="skill-group-title">RF CIRCUITS &amp; RFIC</div>
-        <div class="skill-items">
-          <span class="skill-item">ADS</span>
-          <span class="skill-item">LNA Design</span>
-          <span class="skill-item">RF Switch Design</span>
-          <span class="skill-item">RFIC Design</span>
-          <span class="skill-item">Cadence EDA</span>
-          <span class="skill-item">PIN Diodes</span>
-          <span class="skill-item">Varactor Diodes</span>
-          <span class="skill-item">Link Budget</span>
-        </div>
-      </div>
-      <div class="skill-group sr d3">
-        <div class="skill-group-title">DIGITAL &amp; EMBEDDED</div>
-        <div class="skill-items">
-          <span class="skill-item">Verilog</span>
-          <span class="skill-item">FPGA</span>
-          <span class="skill-item">Xilinx Vivado</span>
-          <span class="skill-item">Quartus Prime</span>
-          <span class="skill-item">Python</span>
-          <span class="skill-item">C</span>
-          <span class="skill-item">Arduino</span>
-          <span class="skill-item">Raspberry Pi</span>
-        </div>
-      </div>
-      <div class="skill-group sr d4">
-        <div class="skill-group-title">RESEARCH &amp; DOCUMENTATION</div>
-        <div class="skill-items">
-          <span class="skill-item">IEEE Paper Writing</span>
-          <span class="skill-item">EM Simulation</span>
-          <span class="skill-item">S-Parameter Analysis</span>
-          <span class="skill-item">CST Macros</span>
-          <span class="skill-item">MATLAB</span>
-          <span class="skill-item">Technical Reporting</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 EXPERIENCE -->
-  <section id="experience">
-    <div class="sec-header sr">
-      <span class="sec-num">05</span>
-      <span class="sec-title">EXPERIENCE</span>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="exp-item sr d1">
-      <div class="exp-meta">INTERNSHIP · 10 WEEKS · ISRO SAC, AHMEDABAD</div>
-      <div class="exp-title">Space Application Center (SAC), ISRO — RF & Antenna Intern</div>
-      <ul class="exp-bullets">
-        <li>Designed a circularly polarized microstrip patch antenna (2.0–2.3 GHz) in Ansys HFSS achieving S11 &lt; −10 dB, AR &lt; 3 dB, and ~5 dBi gain.</li>
-        <li>Developed an Arduino-based vehicle-mounted antenna tracking system using stepper motor, magnetometer, and IMU with Kalman filtering.</li>
-        <li>Achieved ±2° static and ±5°–8° dynamic tracking accuracy during field testing.</li>
-      </ul>
-    </div>
-
-    <div class="exp-item sr d2">
-      <div class="exp-meta">INDUSTRY PROJECT · ONGOING · SAHJANAND LASER PVT. LTD.</div>
-      <div class="exp-title">Absorptive SP8T RF Switch Design for Breast Cancer Detection</div>
-      <ul class="exp-bullets">
-        <li>Designing an absorptive SP8T RF switch using PIN diodes in ADS for integration into a microwave breast cancer detection system.</li>
-        <li>Part of a broader imaging system requiring precise RF switching across multiple antenna ports.</li>
-      </ul>
-    </div>
-
-    <div class="exp-item sr d3">
-      <div class="exp-meta">STUDENT PROGRAM · ONGOING · ISRO COLLABORATION</div>
-      <div class="exp-title">Student Satellite Program — Communication Subsystem</div>
-      <ul class="exp-bullets">
-        <li>Designing the communication subsystem for a student-led satellite initiative in collaboration with ISRO.</li>
-        <li>Working on a stacked patch antenna for S-band and a monopole for UHF band.</li>
-        <li>Responsible for complete RF system design including link budget analysis for both S-band and UHF band.</li>
-      </ul>
-    </div>
-
-    <div class="exp-item sr d4">
-      <div class="exp-meta">LEADERSHIP · ONGOING · IEEE PDEU</div>
-      <div class="exp-title">Vice Chair — IEEE Signal Processing Society Student Branch Chapter, PDEU</div>
-      <ul class="exp-bullets">
-        <li>Leading technical events, workshops, and seminars for the IEEE SPS chapter at PDEU.</li>
-        <li>Coordinating with faculty advisors and IEEE regional bodies for chapter activities and outreach.</li>
-        <li>Previously served as content and documentation lead before taking on the Vice Chair role.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 06 WORK SAMPLES / PROJECTS -->
-  <section id="projects">
-    <div class="sec-header sr">
-      <span class="sec-num">06</span>
-      <span class="sec-title">WORK SAMPLES</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="projects-grid">
-
-      <div class="proj-card sr d1">
-        <div class="proj-freq">2.45 GHz · ADS · RFIC</div>
-        <div class="proj-title">Low Noise Amplifier (LNA) at 2.45 GHz</div>
-        <div class="proj-desc">Designed a low noise amplifier at 2.45 GHz using ADS, targeting low noise figure and sufficient gain for wireless receiver front-end applications.</div>
-        <div class="proj-tags">
-          <span class="proj-tag">LNA</span><span class="proj-tag">ADS</span><span class="proj-tag">2.45 GHz</span><span class="proj-tag">RF CIRCUIT</span>
-        </div>
-      </div>
-
-      <div class="proj-card sr d2">
-        <div class="proj-freq">2.0–2.3 GHz · HFSS · CP ANTENNA</div>
-        <div class="proj-title">Circularly Polarized Microstrip Patch Antenna (ISRO SAC)</div>
-        <div class="proj-desc">Designed and characterized a CP microstrip patch antenna at 2.0–2.3 GHz in Ansys HFSS with S11 &lt; −10 dB, AR &lt; 3 dB, and ~5 dBi gain during ISRO internship.</div>
-        <div class="proj-tags">
-          <span class="proj-tag">CP ANTENNA</span><span class="proj-tag">HFSS</span><span class="proj-tag">MICROSTRIP</span><span class="proj-tag">ISRO</span>
-        </div>
-      </div>
-
-      <div class="proj-card sr d3">
-        <div class="proj-freq">S-BAND · UHF · SATELLITE</div>
-        <div class="proj-title">Student Satellite Communication Subsystem (ISRO)</div>
-        <div class="proj-desc">Designing stacked patch antenna for S-band and monopole for UHF band as part of a student-led satellite initiative with ISRO. Complete RF system design and link budget analysis for both bands.</div>
-        <div class="proj-tags">
-          <span class="proj-tag">S-BAND</span><span class="proj-tag">UHF</span><span class="proj-tag">PATCH ANTENNA</span><span class="proj-tag">SATELLITE</span>
-        </div>
-      </div>
-
-      <div class="proj-card sr d4">
-        <div class="proj-freq">PIN DIODE · RF SWITCH · BIOMEDICAL</div>
-        <div class="proj-title">Absorptive SP8T RF Switch for Breast Cancer Detection</div>
-        <div class="proj-desc">Designing an absorptive SP8T RF switch using PIN diodes in ADS for Sahjanand Laser Pvt. Ltd., for use in a microwave breast cancer detection imaging system.</div>
-        <div class="proj-tags">
-          <span class="proj-tag">SP8T SWITCH</span><span class="proj-tag">PIN DIODE</span><span class="proj-tag">ADS</span><span class="proj-tag">BIOMEDICAL RF</span>
-        </div>
-      </div>
-
-      <div class="proj-card sr d5">
-        <div class="proj-freq">RASPBERRY PI · ANALOG AFE · PATENT</div>
-        <div class="proj-title">Potentiostat for Phenol Detection (Patent Published)</div>
-        <div class="proj-desc">Designed a transconductance-based analog front-end using op-amps for precise current control. Used Raspberry Pi 4 to control voltage swing and transmit data to the cloud. Patent published.</div>
-        <div class="proj-tags">
-          <span class="proj-tag">PATENT</span><span class="proj-tag">ANALOG AFE</span><span class="proj-tag">RASPBERRY PI</span><span class="proj-tag">IoT</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 07 RESEARCH -->
-  <section id="research">
-    <div class="sec-header sr">
-      <span class="sec-num">07</span>
-      <span class="sec-title">RESEARCH &amp; PUBLICATIONS</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="research-list">
-
-      <div class="research-item sr d1">
-        <div class="research-type">JOURNAL · UNDER REVIEW · IEEE TRANSACTIONS ON ANTENNAS AND PROPAGATION</div>
-        <div class="research-title">Symmetric Axial Ratio Beamwidth ME Dipole Antenna at 28 GHz</div>
-        <div class="research-desc">Dual-layer embedded ME dipole antenna at 28 GHz designed for SATCOM applications. Key contribution is the methodology for achieving symmetric axial ratio beamwidth for both RHCP and LHCP. Also designed a sequentially rotated feedline using ADS and HFSS for enhanced bandwidth.</div>
-        <div class="research-metrics">
-          <span class="metric-pill">IBW 38%</span>
-          <span class="metric-pill">ARBW 9.35% (RHCP & LHCP)</span>
-          <span class="metric-pill">SQ feedline: IBW 70% / ARBW 33%</span>
-        </div>
-        <div class="research-badge">UNDER REVIEW — IEEE TAP</div>
-      </div>
-
-      <div class="research-item active sr d2">
-        <div class="research-type">JOURNAL · IN PROGRESS · METASURFACES</div>
-        <div class="research-title">Transmissive Type Metasurface for LP to CP Conversion (4–10 GHz)</div>
-        <div class="research-desc">Designing a wideband flexible metasurface on a thin single-layered substrate for linear-to-circular polarization conversion across 4–10 GHz. Focus on low-profile, single-layer design suitable for conformal applications.</div>
-        <div class="research-metrics">
-          <span class="metric-pill">4–10 GHz bandwidth</span>
-          <span class="metric-pill">Flexible substrate</span>
-          <span class="metric-pill">LP to CP conversion</span>
-        </div>
-        <div class="research-badge inprogress">IN PROGRESS</div>
-      </div>
-
-      <div class="research-item sr d3">
-        <div class="research-type">CONFERENCE · UNDER REVIEW · WAMS</div>
-        <div class="research-title">Performance Analysis of ME Dipole Air Structure for Corporate and Sequentially Fed Arrays</div>
-        <div class="research-desc">Aperture coupled 2×2 Air ME Dipole array analysis comparing corporate and sequentially fed configurations. Demonstrates significantly higher bandwidth under sequential feeding.</div>
-        <div class="research-metrics">
-          <span class="metric-pill">SQ Fed: IBW 61.18% / ARBW 50.93%</span>
-          <span class="metric-pill">Corp Fed: IBW 26.12% / ARBW 9.33%</span>
-        </div>
-        <div class="research-badge">UNDER REVIEW — WAMS</div>
-      </div>
-
-      <div class="research-item collab sr d4">
-        <div class="research-type">CONFERENCE · UNDER REVIEW · WAMS · IIT BHU × PDEU COLLABORATION</div>
-        <div class="research-title">Reflective Type Metasurface using Varactor Diode for SATCOM Applications</div>
-        <div class="research-desc">Reconfigurable reflective metasurface designed in collaboration with IIT BHU and PDEU. Uses a varactor diode to switch between polarization conversion rotation (PCR) mode and LP to CP conversion mode. Designed on FR4 substrate with 10 mm periodicity.</div>
-        <div class="research-metrics">
-          <span class="metric-pill">Triple band ARBW: 8.25% / 40.1% / 8.54%</span>
-          <span class="metric-pill">PCR BW 78%</span>
-          <span class="metric-pill">FR4 · 10mm periodicity</span>
-        </div>
-        <div class="research-badge">UNDER REVIEW — WAMS</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 08 CERTIFICATIONS -->
-  <section id="certifications">
-    <div class="sec-header sr">
-      <span class="sec-num">08</span>
-      <span class="sec-title">CERTIFICATIONS</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="cert-grid">
-
-      <div class="cert-card sr d1">
-        <div class="cert-issuer">CADENCE DESIGN SYSTEMS</div>
-        <div class="cert-title">Digital Design Certification</div>
-        <div class="cert-desc">Certified in digital design fundamentals and toolflow using Cadence EDA tools, covering RTL design, synthesis, and verification methodologies.</div>
-      </div>
-
-      <div class="cert-card sr d2">
-        <div class="cert-issuer">NPTEL · IIT KANPUR</div>
-        <div class="cert-title">RFIC Design</div>
-        <div class="cert-desc">Covers RF integrated circuit design principles including LNA, mixer topologies, VCO, and PLL architectures for wireless communication systems.</div>
-        <div class="cert-score">Score: 75%</div>
-      </div>
-
-      <div class="cert-card sr d3">
-        <div class="cert-issuer">NPTEL · IIT MADRAS</div>
-        <div class="cert-title">Digital IC Design</div>
-        <div class="cert-desc">Covers CMOS logic design, timing analysis, power optimization, and standard cell based design flows for digital integrated circuits.</div>
-        <div class="cert-score">Score: 64%</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 09 AWARDS & RECOGNITIONS -->
-  <section id="awards">
-    <div class="sec-header sr">
-      <span class="sec-num">09</span>
-      <span class="sec-title">AWARDS &amp; RECOGNITIONS</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="awards-grid">
-
-      <div class="award-card sr d1">
-        <div class="award-icon">ACADEMIC · PDEU</div>
-        <div class="award-title">Department Rank 1 — ECE</div>
-        <div class="award-desc">Consistently held Rank 1 in the Electronics and Communication Engineering department at PDEU with a CGPA of 9.84/10.</div>
-      </div>
-
-      <div class="award-card sr d2">
-        <div class="award-icon">INTELLECTUAL PROPERTY</div>
-        <div class="award-title">Published Patent</div>
-        <div class="award-desc">Patent published for a potentiostat device for phenol detection — a transconductance-based analog front-end system with cloud connectivity via Raspberry Pi 4.</div>
-      </div>
-
-      <div class="award-card sr d3">
-        <div class="award-icon">RESEARCH · ISRO</div>
-        <div class="award-title">ISRO SAC Research Internship Selection</div>
-        <div class="award-desc">Selected for a competitive 10-week research internship at the Space Application Center (SAC), ISRO, Ahmedabad, in the RF & Antenna domain.</div>
-      </div>
-
-      <div class="award-card sr d4">
-        <div class="award-icon">LEADERSHIP · IEEE</div>
-        <div class="award-title">IEEE SPS Vice Chair — PDEU</div>
-        <div class="award-desc">Elected Vice Chair of the IEEE Signal Processing Society Student Branch Chapter at PDEU, recognized for contributions to technical content and chapter development.</div>
-      </div>
-
-      <div class="award-card sr d5">
-        <div class="award-icon">RESEARCH · IIT BHU COLLABORATION</div>
-        <div class="award-title">Interinstitutional Research Collaboration</div>
-        <div class="award-desc">Collaborative research with IIT BHU on a reconfigurable reflective metasurface using varactor diodes — submitted to WAMS conference as joint work between IIT BHU and PDEU.</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 10 RECOMMENDATIONS -->
-  <section id="recommendations">
-    <div class="sec-header sr">
-      <span class="sec-num">10</span>
-      <span class="sec-title">RECOMMENDATIONS</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="rec-grid">
-
-      <div class="rec-card sr d1">
-        <div class="rec-text">
-          Nirbhay demonstrated exceptional technical aptitude and initiative during his internship at SAC, ISRO. His work on the circularly polarized antenna and the antenna tracking system reflected a deep understanding of RF principles and a rare ability to bridge simulation and practical implementation. He is meticulous in his approach, quick to learn, and goes well beyond the assigned scope. I have no doubt he will make a significant contribution to the field of RF and satellite communication engineering.
-        </div>
-        <div class="rec-person">
-          <div class="rec-avatar">AS</div>
-          <div>
-            <div class="rec-name">Alok Singhal</div>
-            <div class="rec-role">Research Scientist, Space Application Center (SAC), ISRO, Ahmedabad · Internship Guide</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rec-card sr d2">
-        <div class="rec-text">
-          Nirbhay is one of the most driven and technically capable undergraduate students I have worked with. His ability to independently handle simulation, analysis, and documentation on complex antenna projects — including our work on the ME dipole and metasurface designs — is well above what is expected at his level. He has a researcher's mindset: systematic, evidence-driven, and always seeking to understand the deeper physics. I am confident he is ready for graduate-level research in RF and antenna engineering.
-        </div>
-        <div class="rec-person">
-          <div class="rec-avatar">AD</div>
-          <div>
-            <div class="rec-name">Dr. Arpan Desai</div>
-            <div class="rec-role">Faculty, Electronics & Communication Engineering, PDEU · Research Supervisor</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 11 CONTACT -->
-  <section id="contact">
-    <div class="sec-header sr">
-      <span class="sec-num">11</span>
-      <span class="sec-title">CONTACT</span>
-      <div class="sec-line"></div>
-    </div>
-    <div class="contact-grid">
-      <div>
-        <div class="contact-links sr d1">
-          <a class="contact-link" href="mailto:nirbhaybhojani@gmail.com">
-            <span class="contact-icon">EMAIL</span>
-            <span>nirbhaybhojani@gmail.com</span>
-          </a>
-          <a class="contact-link" href="tel:+919909076067">
-            <span class="contact-icon">PHONE</span>
-            <span>+91 9909076067</span>
-          </a>
-          <a class="contact-link" href="https://www.linkedin.com/in/nirbhay-bhojani-063a82284" target="_blank">
-            <span class="contact-icon">LI</span>
-            <span>linkedin.com/in/nirbhay-bhojani</span>
-          </a>
-          <a class="contact-link" href="https://nirbhaybhojani.github.io" target="_blank">
-            <span class="contact-icon">WEB</span>
-            <span>nirbhaybhojani.github.io</span>
-          </a>
-          <a class="contact-link" href="#">
-            <span class="contact-icon">IEEE</span>
-            <span>IEEE SPS PDEU — Vice Chair</span>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="form-group">
-          <label class="form-label" for="cf-name">NAME</label>
-          <input class="form-input" id="cf-name" type="text" placeholder="Your name" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="cf-email">EMAIL</label>
-          <input class="form-input" id="cf-email" type="email" placeholder="your@email.com" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="cf-message">MESSAGE</label>
-          <textarea class="form-textarea" id="cf-message" placeholder="Your message..." required></textarea>
-        </div>
-        <button class="form-btn" id="cf-btn" onclick="submitForm(event)">TRANSMIT MESSAGE</button>
-        <div id="cf-status" style="margin-top:12px; font-family:var(--font-mono); font-size:12px; display:none;"></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer">
-    NIRBHAY BHOJANI · ECE · PDEU · CGPA 9.84 · RANK 1 · AHMEDABAD, IN · 2026
   </div>
 
 </div>
 
-<script>
-  function toggleTheme() {
-    var html = document.documentElement;
-    var isLight = html.classList.toggle('light');
-    document.getElementById('themeIcon').textContent = isLight ? '☾' : '☀';
-    document.getElementById('themeLabel').textContent = isLight ? 'DARK' : 'LIGHT';
-    try { localStorage.setItem('nb-theme', isLight ? 'light' : 'dark'); } catch(e) {}
-  }
-  (function() {
-    try {
-      var saved = localStorage.getItem('nb-theme');
-      if (saved === 'light') {
-        document.documentElement.classList.add('light');
-        document.getElementById('themeIcon').textContent = '☾';
-        document.getElementById('themeLabel').textContent = 'DARK';
-      }
-    } catch(e) {}
-  })();
-
-  async function submitForm(e) {
-    e.preventDefault();
-    var name = document.getElementById('cf-name').value.trim();
-    var email = document.getElementById('cf-email').value.trim();
-    var message = document.getElementById('cf-message').value.trim();
-    var status = document.getElementById('cf-status');
-    var btn = document.getElementById('cf-btn');
-    if (!name || !email || !message) {
-      status.style.display = 'block'; status.style.color = '#e05050';
-      status.textContent = '// ERROR: all fields are required.'; return;
-    }
-    btn.textContent = 'TRANSMITTING...'; btn.disabled = true; status.style.display = 'none';
-    try {
-      var res = await fetch('https://formspree.io/f/mvzwbbaq', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name, email, message })
-      });
-      if (res.ok) {
-        status.style.display = 'block'; status.style.color = 'var(--c-accent)';
-        status.textContent = '// TRANSMISSION SUCCESSFUL — message received.';
-        document.getElementById('cf-name').value = '';
-        document.getElementById('cf-email').value = '';
-        document.getElementById('cf-message').value = '';
-        btn.textContent = 'TRANSMITTED ✓';
-      } else { throw new Error('Server error'); }
-    } catch(err) {
-      status.style.display = 'block'; status.style.color = '#e05050';
-      status.textContent = '// FAILED — please email: nirbhaybhojani@gmail.com';
-      btn.textContent = 'TRANSMIT MESSAGE'; btn.disabled = false;
-    }
-  }
-
-  (function(){
-    var els = document.querySelectorAll('.sr');
-    if (!els.length) return;
-    if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    els.forEach(function(el){ io.observe(el); });
-  })();
-</script>
 </body>
 </html>
